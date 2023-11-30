@@ -1,0 +1,1924 @@
+<!-- Use on 1295x794 responsive 1980x1080pc  -->
+<!DOCTYPE html>
+<html>
+	<head>
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	  <script src="https://kit.fontawesome.com/83a612d9c6.js" crossorigin="anonymous">
+	  </script>
+	  <script src="https://unpkg.com/blockly/blockly_compressed.js"></script>
+	  <script src="https://unpkg.com/blockly/blocks_compressed.js"></script>
+	  <script src="https://unpkg.com/blockly/javascript_compressed.js"></script>
+	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+	  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
+	  <script src="https://github.com/stoXmod/FontAwesome-pro/raw/master/assets/js/pro.min.js"></script>
+	  <style>
+		body {
+		  font-family: Arial, Helvetica, sans-serif;
+		  width: 100%;
+		  height: 100%;
+		  background-color: hsla(215, 100%, 95%, 1);
+		}
+
+		.navbar {
+		  width: 100%;
+		  background-color: hsla(0, 100%, 65%, 1);
+		  display: flex;
+		  flex-direction: row;
+		  justify-content: flex-start;
+		  flex-wrap: nowrap;
+		  align-items: center;
+		  flex-grow: 1;
+		}
+
+		.navbar a {
+		  float: left;
+		  padding: 12px;
+		  color: white;
+		  text-decoration: none;
+		  display: flex;
+		  text-decoration: none;
+		  color: hsla(0, 100%, 100%, 1);
+		  -webkit-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		  align-self: center;
+		  position: relative;
+		  align-items: center;
+		  white-space: nowrap;
+		  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		  font-size: 0.80rem;
+		  font-weight: bold;
+		}
+
+		.navbar a:hover {
+		  background-color: #d94141;
+		}
+
+		@media screen and (max-width: 500px) {
+		  .navbar a {
+			float: none;
+			display: block;
+		  }
+		}
+
+		.navbar input[type=text] {
+		  max-width: 12rem;
+		  flex: 1;
+		  padding: 6px;
+		  margin-top: 5px;
+		  margin-bottom: 5px;
+		  margin-right: 16px;
+		  flex-grow: 1;
+		  color: hsla(0, 100%, 100%, 1);
+		  font-weight: bold;
+		  font-size: .8rem;
+		  border: 1px dashed var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+		  border-radius: calc(0.5rem / 2);
+		  -webkit-border-radius: calc(0.5rem / 2);
+		  -moz-border-radius: calc(0.5rem / 2);
+		  background-color: hsla(0, 100%, 100%, 0.25);
+		  background-clip: padding-box;
+		  -webkit-background-clip: padding-box;
+		  height: auto;
+		  padding: 0.5rem;
+		}
+
+		.divider {
+		  border-right: 1px dashed var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+		  margin: 0 0.5rem;
+		  height: 35px;
+		  margin-top: 2px;
+		  margin-right: 8px;
+		  margin-left: 0px;
+		}
+
+		.btn {
+		  border: 1px solid hsla(0, 0%, 0%, 0.15);
+		  padding: 0 0.25rem;
+		  font-size: 16px;
+		  cursor: pointer;
+		  background-color: hsla(0, 100%, 65%, 1);
+		  height: 2rem;
+		  align-self: center;
+		  position: relative;
+		  font-weight: bold;
+		  padding-left: 0.75rem;
+		  padding-right: 0.75rem;
+		  font-size: 0.80rem;
+		}
+
+		.danger {
+		  border-color: hsla(0, 0%, 0%, 0.15);
+		  color: white;
+		  border-radius: calc(0.5rem / 2);
+		}
+
+		.active {
+		  font-size: 25px;
+		}
+
+		.sprite-container {
+		  width: 399px;
+		  overflow: auto;
+		}
+
+		.canvas canvas {
+		  background-color: white;
+		  width: 480px;
+		  height: 360px;
+		  border-radius: 0.5rem;
+		  border: 0.0625rem solid var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+		  box-sizing: content-box !important;
+		  position: absolute;
+		  right: 8px;
+		}
+
+		.stage {
+		  float: right;
+		  min-width: 490px;
+		}
+
+		.controls {
+		  display: flex;
+		  flex-shrink: 0;
+		  align-items: center;
+		  height: 2.75rem;
+		  padding-top: 0.5rem;
+		  padding-bottom: 0.5rem;
+		}
+
+		#Layer_2 {}
+
+		.control_option {
+		  margin-left: 10px;
+		  cursor: pointer;
+		}
+
+		.stop {
+		  opacity: 0.5;
+		}
+
+		.fullscreen-btn {
+		  background-color: white;
+		  border: 1px solid var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+		  border-radius: calc(0.5rem / 2);
+		  padding-top: 6px;
+		  cursor: pointer;
+		}
+
+		.btn-outer {
+		  position: absolute;
+		  right: 7px;
+		}
+
+		@media (min-height: 768px) and (max-height: 991.98px) {
+		  .stage-selector {
+			position: absolute;
+			bottom: 0px;
+			right: 8px;
+			border-radius: 0.5rem;
+			border: 0.0625rem solid var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+			background-color: white;
+			padding: 5px;
+			border-bottom-right-radius: 0px;
+			border-bottom-left-radius: 0px;
+			height: 335px;
+			flex-grow: 1;
+			display: flex;
+			flex-direction: column;
+		  }
+		}
+
+		@media (min-height: 992px) {
+		  .stage-selector {
+			position: absolute;
+			bottom: 0px;
+			right: 8px;
+			border-radius: 0.5rem;
+			border: 0.0625rem solid var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+			background-color: white;
+			padding: 5px;
+			border-bottom-right-radius: 0px;
+			border-bottom-left-radius: 0px;
+			height: 51.5%;
+			flex-grow: 1;
+			display: flex;
+			flex-direction: column;
+		  }
+		}
+
+		.stage-header {
+		  font-size: 0.625rem;
+		  font-weight: bold;
+		  color: var(--text-primary, hsla(225, 15%, 40%, 1));
+		  border-bottom: 1px solid var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+		  display: flex;
+		  flex-direction: column;
+		  align-items: center;
+		  justify-content: center;
+		  height: calc(2.75rem - 2px);
+		}
+
+		.stage-selector-costume {
+		  display: block;
+		  margin-top: 5px;
+		  width: 100%;
+		  border: 1px solid var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+		  border-radius: 0.25rem;
+		  box-shadow: inset 0 0 4px hsla(0, 0%, 0%, 0.15);
+		  width: 64px;
+		  max-height: 48px;
+		}
+
+		.stage-selector-button {
+		  border-radius: 100%;
+		  width: 2.75rem;
+		  height: 2.75rem;
+		  box-shadow: 0 0 0 4px hsla(0, 100%, 65%, 0.35);
+		  z-index: 46;
+		  transition: transform, box-shadow 0.5s;
+		  background: hsla(0, 100%, 65%, 1);
+		  border: none;
+		  justify-content: center;
+		  display: flex;
+		  flex-direction: column;
+		  cursor: pointer;
+		  position: absolute;
+		  bottom: 15px;
+		  right: 15px;
+		  align-items: center;
+		}
+
+		.stage-btn-svg {
+		  width: calc(2.75rem - 1rem);
+		  height: calc(2.75rem - 1rem);
+		}
+
+		.stage-selector {
+		  cursor: pointer;
+		}
+
+		.sprite-info {
+		  background-color: white;
+		  padding: 0.75rem;
+		  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		  background-color: white;
+		  color: var(--text-primary, hsla(225, 15%, 40%, 1));
+		  border-top-left-radius: 0.5rem;
+		  border-top-right-radius: 0.5rem;
+		  border-bottom: 1px solid var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+		}
+
+		.sprite-selector {
+		  position: absolute;
+		  bottom: 0px;
+		  right: 90px;
+		  border-radius: 0.5rem;
+		  border-bottom-right-radius: 0px;
+		  border-bottom-left-radius: 0px;
+		  height: 335px;
+		  flex-grow: 1;
+		  display: flex;
+		  flex-direction: column;
+		  border: 1px solid var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+		  flex-grow: 1;
+		  min-width: 400px;
+		}
+
+		.sprite-name {
+		  margin-right: 0.5rem;
+		  box-sizing: border-box;
+		  font-weight: bold;
+		  font-size: 0.625rem;
+		  color: var(--text-primary, hsla(225, 15%, 40%, 1));
+		}
+
+		.sprite-input {
+		  width: 8rem;
+		  height: 2rem;
+		  padding: 0 0.75rem;
+		  border-width: 1px;
+		  border-style: solid;
+		  border-color: var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+		  border-radius: 2rem;
+		  outline: none;
+		  cursor: text;
+		  transition: 0.25s ease-out;
+		  box-shadow: none;
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+		  white-space: nowrap;
+		  min-width: 0;
+		  transition: border-color 0.25s;
+		  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		  font-size: 0.625rem;
+		  font-weight: bold;
+		  color: var(--text-primary, hsla(225, 15%, 40%, 1));
+		}
+
+		.sprite-input:hover {
+		  border-color: var(--ui-black-transparent, hsla(0, 100%, 65%, 1));
+		}
+
+		.sprite-info-name .sprite-info-x {
+		  white-space: nowrap;
+		}
+
+		.x-svg {
+		  align-items: center;
+		  white-space: nowrap;
+		  margin-bottom: -5px;
+		}
+
+		.x-input {
+		  width: 3rem;
+		  text-align: center;
+		}
+
+		.y-input {
+		  width: 3rem;
+		  text-align: center;
+		}
+
+		.y-svg {
+		  align-items: center;
+		  white-space: nowrap;
+		  margin-bottom: -5px;
+		}
+
+		.Show {
+		  border-top-left-radius: calc(0.5rem / 2);
+		  border-bottom-left-radius: calc(0.5rem / 2);
+		  border-top-right-radius: 0px;
+		  border-bottom-right-radius: 0px;
+		  border: 1px solid var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+		  background-color: white;
+		  width: calc(2rem + 2px);
+		  height: calc(2rem + 2px);
+		  cursor: pointer;
+		}
+
+		.UShow-svg {
+		  margin-top: 4px;
+		  margin-bottom: -2px;
+		  margin-left: -1px;
+		  margin-right: 0px;
+		  background-color: white;
+		}
+
+		.Show-svg {
+		  margin-top: 4px;
+		  margin-bottom: -2px;
+		  margin-left: -1px;
+		  margin-right: 0px;
+		  background-color: white;
+		}
+
+		.sprite-info-bottom {
+		  margin-top: 8px;
+		}
+
+		.Un-Show {
+		  margin-left: -5px;
+		  white-space: nowrap;
+		  border: 1px solid var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+		  border-top-right-radius: calc(0.5rem / 2);
+		  border-bottom-right-radius: calc(0.5rem / 2);
+		  background-color: white;
+		  width: calc(2rem + 2px);
+		  height: calc(2rem + 2px);
+		  cursor: pointer;
+		}
+
+		.sprite-show {
+		  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		  background-color: white;
+		  color: var(--text-primary, hsla(225, 15%, 40%, 1));
+		  font-size: 0.625rem;
+		}
+
+		.size-input {
+		  width: 4rem;
+		  text-align: center;
+		}
+
+		.sprite {
+		  float: left;
+		  white-space: nowrap;
+		  display: flex;
+		  flex-direction: column;
+		  justify-content: flex-start;
+		  position: relative;
+		  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		  font-size: 0.8rem;
+		  color: var(--text-primary, hsla(225, 15%, 40%, 1));
+		  border-width: 2px;
+		  border-style: solid;
+		  border-color: var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+		  border-radius: 0.5rem;
+		  text-align: center;
+		  cursor: pointer;
+		  box-shadow: 0px 0px 0px 4px hsla(0, 100%, 65%, 0.35);
+		  border: 2px solid hsla(0, 100%, 65%, 1);
+		  background: hsla(0, 100%, 100%, 1);
+		  width: calc((100% / 5) - 0.5rem);
+		  max-width: 6rem;
+		  min-width: 4rem;
+		  min-height: 4.6rem;
+		  margin: 10px;
+		}
+
+		.sprite-footer {
+		  background-color: hsla(0, 100%, 65%, 1);
+		  ;
+		  height: 100%;
+		  padding: 0.25rem;
+		  border-bottom-left-radius: 0.25rem;
+		  border-bottom-right-radius: 0.25rem;
+		  font-size: 0.625rem;
+		  bottom: 10px;
+		  position: relative;
+		}
+
+		.sprite-footer-text {
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+		  white-space: nowrap;
+		  min-width: 0;
+		  background: hsla(0, 100%, 65%, 1);
+		  color: hsla(0, 100%, 100%, 1);
+		}
+
+		.delete-btn {
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		  overflow: hidden;
+		  width: 1.75rem;
+		  height: 1.75rem;
+		  box-shadow: 0px 0px 0px 2px hsla(0, 100%, 65%, 0.35);
+		  background-color: hsla(0, 100%, 65%, 1);
+		  color: hsla(0, 100%, 100%, 1);
+		  border-radius: 50%;
+		  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		  -webkit-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		  cursor: pointer;
+		  transition: all 0.15s ease-out;
+		  border: none;
+		  top: 10px;
+		  margin-right: auto;
+		  margin-left: 55px;
+		  margin-top: -85px;
+		}
+
+		.sprite-container {
+		  display: inline;
+		}
+
+		#blocklyDiv {
+		  background-color: white;
+		  bottom: 37px;
+		  position: absolute;
+		  border-top-right-radius: 0.5rem;
+		  border-bottom-right-radius: 0.5rem;
+		  border: 1px solid var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+		  width: 61.5%;
+		  height: 84%;
+		  z-index: 9;
+		}
+
+		.blocklyText {
+		  fill: white;
+		}
+
+		.toolbar {
+		  left: 0px;
+		  height: 664px;
+		  background-color: white;
+		  width: 60px;
+		  z-index: 10;
+		  position: relative;
+		  top: 42px;
+		  border: 1px solid var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+		}
+
+		.toolbar-action {
+		  padding: 0.375rem 0px;
+		  cursor: pointer;
+		  text-align: center;
+		  width: 100%;
+		  background: #FFFFFF;
+		  color: #575E75;
+		  font-size: .7rem;
+		  border: none;
+		  border-left: 1px solid var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+		}
+
+		.active {
+		  background: #E9EEF2;
+		}
+
+		.toolbar-blocks {
+		  width: 20%;
+		  height: 84%;
+		  background-color: white;
+		  z-index: 10;
+		  position: absolute;
+		  bottom: 37px;
+		  left: 60px;
+		  border: 1px solid var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+		}
+
+		.control-block-preview {
+		  background-color: rgb(255, 171, 25);
+		  position: absolute;
+		  padding: 5px;
+		  margin: 10px;
+		  border: 1px solid var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+		  color: white;
+		}
+
+		.movement-block-preview {
+		  background-color: rgb(76, 151, 255);
+		  position: absolute;
+		  padding: 5px;
+		  margin: 10px;
+		  border: 1px solid rgb(76, 151, 255);
+		  color: white;
+		}
+
+		.visual-block-preview {
+		  background-color: rgb(153, 102, 255);
+		  position: absolute;
+		  padding: 5px;
+		  margin: 10px;
+		  border: 1px solid rgb(119, 77, 203);
+		  color: white;
+		}
+
+		.input-block-preview {
+		  background-color: rgb(89, 192, 89);
+		  position: absolute;
+		  padding: 5px;
+		  margin: 10px;
+		  border: 1px solid rgb(56, 148, 56);
+		  color: white;
+		}
+
+		.tab {
+		  margin-top: 11px;
+		  border-radius: 1rem 1rem 0 0;
+		  border: 1px solid var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+		  padding: 0.125rem 1.25rem 0;
+		  padding-top: 6px;
+		  color: grey;
+		  float: left;
+		  z-index: 8;
+		  position: absolute;
+		  height: 35px;
+		}
+
+		.tab-constumes {
+		  left: 90px;
+		}
+
+		.tab-sounds {
+		  left: 208px;
+		}
+
+		.active-tab {
+		  background-color: white;
+		  color: hsla(0, 100%, 65%, 1);
+		  fill: hsla(0, 100%, 65%, 1);
+		  height: 38px;
+		  margin-top: 8px;
+		}
+
+		.active-show {
+		  fill: #FF4C4C;
+		}
+
+		.inactive-show {
+		  fill: #808080;
+		}
+
+		.editor {
+		  background-color: white;
+		  height: 655px;
+		  top: 90px;
+		  position: absolute;
+		  width: 797px;
+		  border-top-right-radius: 0.5rem;
+		  border-bottom-right-radius: 0.5rem;
+		  border: 1px solid var(--ui-black-transparent, hsla(0, 0%, 0%, 0.15));
+		  left: 0px;
+		  padding-top: 20px;
+		  padding-left: 10px;
+		}
+
+		.editor-text {
+		  margin-right: calc(2 * 0.25rem);
+		  font-weight: bold;
+		  font-size: 0.625rem;
+		  margin-left: 60px;
+		}
+
+		.editor-input {
+		  width: 8rem;
+		  height: 2rem;
+		  padding: 0 0.75rem;
+		  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		  font-size: 0.75rem;
+		  font-weight: bold;
+		  color: var(--paint-text-primary, #575e75);
+		  border-width: 1px;
+		  border-style: solid;
+		  border-color: var(--paint-form-border, #E9EEF2);
+		  border-radius: 2rem;
+		  outline: none;
+		  cursor: text;
+		  -webkit-transition: 0.25s ease-out;
+		  -o-transition: 0.25s ease-out;
+		  transition: 0.25s ease-out;
+		  -webkit-box-shadow: none;
+		  box-shadow: none;
+		  overflow: hidden;
+		  -o-text-overflow: ellipsis;
+		  text-overflow: ellipsis;
+		  white-space: nowrap;
+		  min-width: 0;
+		  color: grey;
+		}
+
+		.editor-input:hover {
+		  border-color: var(--ui-black-transparent, hsla(0, 100%, 65%, 1));
+		}
+
+		.editor-canvas {
+		  background-color: #F4F5FF;
+		  width: 433px;
+		  height: 587px;
+		  position: relative;
+		  border-radius: 0.5rem;
+		  margin-top: 10px;
+		}
+
+		.editor-btn {
+		  background-color: #FFFFFF;
+		  display: inline-block;
+		  margin: 0.25rem;
+		  border: none;
+		  border-radius: 0.25rem;
+		  position: relative;
+		  padding-left: 0.3rem;
+		  padding-top: 0.1rem;
+		  padding-bottom: 0.1rem;
+		  padding-right: 0.3rem;
+		  font-size: 20px;
+		  color: rgb(87, 94, 117);
+		}
+
+		.editor-code {
+		  background-color: #F4F5FF;
+		  border: none;
+		  height: 585px;
+		  border-radius: 0.5rem;
+		  width: 340px;
+		  position: absolute;
+		  top: 60px;
+		  right: 7px;
+		}
+
+		.sprite-preview {
+		  height: 55px;
+		}
+	  </style>
+	</head>
+	<body>
+	  <div class="navbar">
+		<a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-globe"
+			viewBox="0 0 16 16">
+			<path
+			  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z" />
+		  </svg></a>
+		<a href="#">File</a>
+		<a href="#">Edit</a>
+		<a href="#">Turbo</a>
+		<a href="#">Settings</a>
+		<a class="divider" style="padding: 0px;"></a>
+		<input type="text" id="projectName" name="projectName" value="New Project">
+		<button class="btn danger"><i class="fa-solid fa-rotate" style="color: #ffffff;"></i><span><span
+			  style="color:hsla(0, 100%, 65%, 1)">a</span>See Project Page</span></button>
+	  </div>
+	  <div class="main">
+		<div class="tab tab-code active-tab" style="font-size: 14px;" id="tab-code" onclick="onclcod()">
+		  <b style="top: 1px;position: relative;" class="bi bi-code"></b>
+		  <span style="top: 1px;position: relative;">Code</span>
+		</div>
+		<div class="tab tab-constumes" style="font-size: 14px;" onclick="onclcos()" id="tab-costume">
+		  <i style="top: 1px;position: relative;" class="fa-solid fa-ice-cream"></i>
+		  <span style="top: 1px;position: relative;">Costumes</span>
+		</div>
+		<div class="stage_target">
+		  <div class="stage">
+			<div class="controls">
+			  <svg onclick="runCode()" class="control_option start" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" id="Layer_1"
+				data-name="Layer 1" viewBox="0 0 16.63 17.5">
+				<defs>
+				  <style>
+					.cls-1,
+					.cls-2 {
+					  fill: #4cbf56;
+					  stroke: #45993d;
+					  stroke-linecap: round;
+					  stroke-linejoin: round;
+					}
+
+					.cls-2 {
+					  stroke-width: 1.5px;
+					}
+				  </style>
+				</defs>
+				<title>icon--green-flag</title>
+				<path style="fill: #4cbf56;" class="cls-1"
+				  d="M.75,2A6.44,6.44,0,0,1,8.44,2h0a6.44,6.44,0,0,0,7.69,0V12.4a6.44,6.44,0,0,1-7.69,0h0a6.44,6.44,0,0,0-7.69,0" />
+				<line class="cls-2" x1="0.75" y1="16.75" x2="0.75" y2="0.75" />
+			  </svg>
+			  <i class="btn-outer">
+				<button class="fullscreen-btn">
+				  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px"
+					height="20px" viewBox="0 0 20 20" version="1.1">
+					<!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+					<title>Fullscreen</title>
+					<desc>Created with Sketch.</desc>
+					<defs />
+					<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+					  <g id="Fullscreen" fill="#575E75">
+						<g id="fullscreen" transform="translate(3.000000, 3.000000)">
+						  <path
+							d="M13.338093,4.35035264 L12.4488644,3.45883199 L9.31483512,5.83342741 C8.95713791,6.10825708 8.4389784,6.03619808 8.1648553,5.66752413 C7.94254816,5.37090918 7.94756261,4.96201625 8.1648553,4.6821592 L10.5333457,1.54005165 L9.66584641,0.668640487 C9.41679554,0.418947674 9.59397267,0.00502737208 9.93495506,0.00502737208 L13.6122161,0 C13.8244944,0.00502737208 14,0.180985395 14,0.388783441 L14,4.08055034 C14,4.42241164 13.5821294,4.59501808 13.338093,4.35035264"
+							id="Fill-1" />
+						  <path
+							d="M0.661906989,9.64928834 L1.55113557,10.5408826 L4.68516488,8.16609118 C5.04286209,7.89123882 5.5610216,7.9649797 5.8351447,8.33200815 C6.05745184,8.62864758 6.05243739,9.03757425 5.8351447,9.3174544 L3.4649828,12.4598213 L4.33415359,13.3313043 C4.58320446,13.5810178 4.40602733,13.9949722 4.06504494,13.9949722 L0.387783893,14 C0.175505641,13.9949722 0,13.8189997 0,13.6111845 L0,9.9191129 C0,9.57722339 0.417870574,9.4046027 0.661906989,9.64928834"
+							id="Fill-3" />
+						  <path
+							d="M0.661906989,4.35035264 L1.55113557,3.45883199 L4.68516488,5.83342741 C5.04286209,6.10825708 5.5610216,6.03619808 5.8351447,5.66752413 C6.05745184,5.37090918 6.05243739,4.96201625 5.8351447,4.6821592 L3.4649828,1.54005165 L4.33415359,0.668640487 C4.58320446,0.418947674 4.40602733,0.00502737208 4.06504494,0.00502737208 L0.387783893,0 C0.175505641,0.00502737208 0,0.180985395 0,0.388783441 L0,4.08055034 C0,4.42241164 0.417870574,4.59501808 0.661906989,4.35035264"
+							id="Fill-5" />
+						  <path
+							d="M13.338093,9.64928834 L12.4488644,10.5408826 L9.31483512,8.16609118 C8.95713791,7.89123882 8.4389784,7.9649797 8.1648553,8.33200815 C7.94254816,8.62864758 7.94756261,9.03757425 8.1648553,9.3174544 L10.5333457,12.4598213 L9.66584641,13.3313043 C9.41679554,13.5810178 9.59397267,13.9949722 9.93495506,13.9949722 L13.6122161,14 C13.8244944,13.9949722 14,13.8189997 14,13.6111845 L14,9.9191129 C14,9.57722339 13.5821294,9.4046027 13.338093,9.64928834"
+							id="Fill-7" />
+						</g>
+					  </g>
+					</g>
+				  </svg>
+				</button>
+			  </i>
+			</div>
+			<div class="canvas">
+			  <canvas style="width: 480px; height: 345px;" id="BlCanvas">
+			  </canvas>
+			</div>
+		  </div>
+		  <div class="target">
+			<div class="sprite-selector">
+			  <div class="sprite-info">
+				<div class="sprite-info-top">
+				  <span class="sprite-name">Sprite</span>
+				  <input class="sprite-input" type="text" value="Sprite1" id="sprite-name" onchange="onchangen()">
+				  &nbsp;&nbsp;
+				  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="x-svg"
+					width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+					<!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+					<title>x-icon_V2</title>
+					<desc>Created with Sketch.</desc>
+					<defs />
+					<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+					  stroke-linejoin="round">
+					  <g id="x-icon_V2" stroke="#575E75" stroke-width="2">
+						<path d="M3,8 L12,8" id="Stroke-1" />
+						<polyline id="Stroke-5" points="4 10 2 7.99943423 4 6" />
+						<polyline id="Stroke-5-Copy"
+						  transform="translate(13.000000, 8.000000) scale(-1, 1) translate(-13.000000, -8.000000) "
+						  points="14 10 12 7.99943423 14 6" />
+					  </g>
+					</g>
+				  </svg>
+				  <span class="sprite-name">x</span>
+				  <input class="sprite-input x-input" type="text" value="0" id="sprite-x" onchange="onchangea()">
+				  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  <svg class="y-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+					width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+					<!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+					<title>y icon V2</title>
+					<desc>Created with Sketch.</desc>
+					<defs />
+					<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+					  stroke-linejoin="round">
+					  <g id="y-icon-V2" stroke="#575E75" stroke-width="2">
+						<g id="y-icon"
+						  transform="translate(8.000000, 8.000000) rotate(90.000000) translate(-8.000000, -8.000000) translate(2.000000, 6.000000)">
+						  <path d="M1,2 L10,2" id="Stroke-1" />
+						  <polyline id="Stroke-5" points="2 4 0 1.99943423 2 0" />
+						  <polyline id="Stroke-5-Copy"
+							transform="translate(11.000000, 2.000000) scale(-1, 1) translate(-11.000000, -2.000000) "
+							points="12 4 10 1.99943423 12 0" />
+						</g>
+					  </g>
+					</g>
+				  </svg>
+				  <span class="sprite-name">y</span>
+				  <input onchange="onchangea()" class="sprite-input y-input" type="text" value="0" id="sprite-y">
+				</div>
+				<div class="sprite-info-bottom">
+				  <span class="sprite-show">Show</span>&nbsp;&nbsp;
+				  <button onclick="onshow()" class="Show">
+					<svg class="Show-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+					  width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+					  <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+					  <title>show-icon-active</title>
+					  <desc>Created with Sketch.</desc>
+					  <defs />
+					  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+						<g id="show-icon-active" fill-rule="nonzero">
+						  <g transform="translate(1.000000, 2.000000)">
+							<path
+							  d="M13.5091295,4.36470987 C14.1505195,5.26785566 14.1765976,6.75321925 13.5091295,7.63529009 C13.5091295,7.63529009 11.4744401,11.5 6.99999999,11.5 C2.52555986,11.5 0.49087044,7.63529009 0.49087044,7.63529009 C-0.150519518,6.7321443 -0.176597571,5.24678071 0.49087044,4.36470987 C0.49087044,4.36470987 2.52555986,0.5 6.99999999,0.5 C11.4744401,0.5 13.5091295,4.36470987 13.5091295,4.36470987 Z M6.99889412,9.99889412 C9.2077277,9.99889412 10.9983412,8.20828068 10.9983412,5.99944706 C10.9983412,3.79061344 9.2077277,2 6.99889412,2 C4.7900605,2 2.99944706,3.79061344 2.99944706,5.99944706 C2.99944706,8.20828068 4.7900605,9.99889412 6.99889412,9.99889412 Z"
+							  id="Combined-Shape" />
+							<circle id="Oval" cx="7" cy="6" r="2" />
+						  </g>
+						</g>
+					  </g>
+					</svg>
+				  </button>
+				  <button onclick="onhide()" class="Un-Show">
+					<svg class="UShow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+					  width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+					  <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+					  <title>hide-icon-active</title>
+					  <desc>Created with Sketch.</desc>
+					  <defs />
+					  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+						<g id="hide-icon-active">
+						  <g transform="translate(1.000000, 1.000000)" id="Combined-Shape">
+							<path
+							  d="M2.06675537,10.5669531 C0.999299947,9.6010063 0.49087044,8.63529009 0.49087044,8.63529009 C-0.150519518,7.7321443 -0.176597571,6.24678071 0.49087044,5.36470987 C0.49087044,5.36470987 2.52555986,1.5 6.99999999,1.5 C8.31672118,1.5 9.42216368,1.83467798 10.32665,2.30705842 L11.9737085,0.659999967 L12.6808152,1.36710675 L1.36710675,12.6808152 L0.659999967,11.9737085 L2.06675537,10.5669531 Z M9.06150447,3.57220396 C8.4592531,3.20897321 7.75347776,3 6.99889412,3 C4.7900605,3 2.99944706,4.79061344 2.99944706,6.99944706 C2.99944706,7.75403071 3.20842027,8.45980605 3.57165102,9.06205741 L5.07816645,7.55554198 C5.02727139,7.37916271 5,7.19276614 5,7 C5,5.8954305 5.8954305,5 7,5 C7.19276614,5 7.37916271,5.02727139 7.55554198,5.07816645 L9.06150447,3.57220396 Z M3.68757244,11.7003495 L4.95187601,10.4360459 C5.55070241,10.7935069 6.25081289,10.9988941 6.99889412,10.9988941 C9.2077277,10.9988941 10.9983412,9.20828068 10.9983412,6.99944706 C10.9983412,6.25136583 10.792954,5.55125535 10.435493,4.95242895 L11.9445897,3.44333221 C13.0043028,4.40583676 13.5091295,5.36470987 13.5091295,5.36470987 C14.1505195,6.26785566 14.1765976,7.75321925 13.5091295,8.63529009 C13.5091295,8.63529009 11.4744401,12.5 6.99999999,12.5 C5.69017232,12.5 4.58941688,12.1688172 3.68757244,11.7003495 Z M6.46130696,8.92661494 L8.92661494,6.46130696 C8.9744347,6.63269299 9,6.81336095 9,7 C9,8.1045695 8.1045695,9 7,9 C6.81336095,9 6.63269299,8.9744347 6.46130696,8.92661494 Z" />
+						  </g>
+						</g>
+					  </g>
+					</svg>
+				  </button>
+				  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  <span class="sprite-name" style="font-weight:normal">Size</span>
+				  <input onchange="onchangea()" class="sprite-input size-input" type="text" value="100" id="sprite-size">
+				  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  <span class="sprite-name" style="font-weight:normal">Direction</span>
+				  <input onchange="onchangea()" class="sprite-input size-input" type="text" value="90"
+					id="sprite-direction">
+				</div>
+			  </div>
+			  <div class="sprite-container" id="sprite-container">
+				<div onclick="makeactive('Sprite1')"
+				  svg="<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; version=&quot;1.1&quot;></svg>"
+				  class="sprite" id="Sprite1" name="Sprite1" x="0" y="0" show="true" size="100" direction="90"
+				  activecostume="costume1">
+				  <div class="sprite-preview">
+					<img style="width: 35px;margin: 5px;margin-bottom: 15px;"
+					  class="sprite-selector-item_sprite-image_2QWuK" draggable="false" id="costume-preview"
+					  src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSI4Ny45OTk0NSIgaGVpZ2h0PSI4OC4wMDE0MiIgdmlld0JveD0iMCwwLDg3Ljk5OTQ1LDg4LjAwMTQyIj4KICA8IS0tIFRoaXMgaWNvbiBpcyBiYXNlZCBvbiBUd2Vtb2ppIGh0dHBzOi8vdHdlbW9qaS50d2l0dGVyLmNvbS8gLS0+CiAgPCEtLSBMaWNlbnNlOiBDQy1CWSA0LjAgaHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LzQuMC8gLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE5Ni4wMDAyOCwtMTM1Ljk5OTI5KSI+CiAgICA8ZyBkYXRhLXBhcGVyLWRhdGE9InsmcXVvdDtpc1BhaW50aW5nTGF5ZXImcXVvdDs6dHJ1ZX0iIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj4KICAgICAgPHBhdGggZD0iTTI4MC43NjE2NCwyMjQuMDAwNzFjLTAuODI4NDksMCAtMS42NTY5OCwtMC4zMTY2MSAtMi4yOTAyMSwtMC45NDcyMWwtODAuODQ1ODQsLTgwLjg0ODQ4Yy0xLjI2Mzg0LC0xLjI2Mzg0IC0xLjI2Mzg0LC0zLjMxNjU3IDAsLTQuNTgwNDFjMS4yNjM4NCwtMS4yNjM4NCAzLjMxNjU3LC0xLjI2Mzg0IDQuNTgwNDEsMGw4MC44NDU4NCw4MC44NDU4NGMxLjI2Mzg0LDEuMjYzODQgMS4yNjM4NCwzLjMxNjU3IDAsNC41ODA0MWMtMC42MzMyNCwwLjYzMDYgLTEuNDYxNzMsMC45NDk4NSAtMi4yOTAyMSwwLjk0OTg1eiIgZmlsbD0iI2Q5OWU4MiIvPgogICAgICA8cGF0aCBkPSJNMjMxLjYzMDQsMTUzLjgxNDM1YzAsOS44Mzg5MiAtNy45NzYxNCwxNy44MTUwNiAtMTcuODE1MDYsMTcuODE1MDZjLTkuODM4OTIsMCAtMTcuODE1MDYsLTcuOTc2MTQgLTE3LjgxNTA2LC0xNy44MTUwNmMwLC05LjgzODkyIDcuOTc2MTQsLTE3LjgxNTA2IDE3LjgxNTA2LC0xNy44MTUwNmM5LjgzODkyLDAgMTcuODE1MDYsNy45NzYxNCAxNy44MTUwNiwxNy44MTUwNnoiIGZpbGw9IiNmY2IxZTMiLz4KICAgICAgPHBhdGggZD0iTTIyOS4xNjA5OCwxOTAuNTkyODhjLTkuNTc1NjUsLTIuMjYxMTEgLTE1LjUwNTI0LC0xMS44NTY3MSAtMTMuMjQ0MTIsLTIxLjQzMjM1YzIuMjYxMTEsLTkuNTc1NjUgMTEuODU2NzEsLTE1LjUwNTI0IDIxLjQzMjM1LC0xMy4yNDQxMmM5LjU3NTY1LDIuMjYxMTEgMTUuNTA1MjQsMTEuODU2NzEgMTMuMjQ0MTIsMjEuNDMyMzVjLTIuMjYxMTEsOS41NzU2NSAtMTEuODU2NzEsMTUuNTA1MjQgLTIxLjQzMjM1LDEzLjI0NDEyeiIgZmlsbD0iI2ZmZDk4MyIvPgogICAgICA8cGF0aCBkPSJNMjcwLjUwMzIxLDE5Mi42ODQ1M2MwLDkuODM4OTIgLTcuOTc4NzgsMTcuODE3NjkgLTE3LjgxNzY5LDE3LjgxNzY5Yy05LjgzODkyLDAgLTE3LjgxNTA2LC03Ljk3ODc4IC0xNy44MTUwNiwtMTcuODE3NjljMCwtOS44Mzg5MiA3Ljk3NjE0LC0xNy44MTUwNiAxNy44MTUwNiwtMTcuODE1MDZjOS44Mzg5MiwwIDE3LjgxNzY5LDcuOTc4NzggMTcuODE3NjksMTcuODE1MDZ6IiBmaWxsPSIjYTZkMzg4Ii8+CiAgICAgIDxwYXRoIGQ9Ik0yODAuNzYxNjQsMjI0LjAwMDcxYy0wLjgyODQ5LDAgLTEuNjU2OTgsLTAuMzE2NjEgLTIuMjkwMjEsLTAuOTQ3MjFsLTE5Ljg0MTQxLC0xOS44NDE0MWMtMS4yNjY0OCwtMS4yNjM4NCAtMS4yNjY0OCwtMy4zMTY1NyAwLC00LjU4MDQxYzEuMjY2NDgsLTEuMjYzODQgMy4zMTM5MywtMS4yNjM4NCA0LjU4MDQxLDBsMTkuODQxNDEsMTkuODQxNDFjMS4yNjM4NCwxLjI2Mzg0IDEuMjYzODQsMy4zMTY1NyAwLDQuNTgwNDFjLTAuNjMzMjQsMC42Mjc5NiAtMS40NjE3MywwLjk0NzIxIC0yLjI5MDIxLDAuOTQ3MjF6IiBmaWxsPSIjZDk5ZTgyIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4=">
+				  </div>
+				  <div class="sprite-footer">
+					<span class="sprite-footer-text">Sprite1</span>
+				  </div>
+				  <button class="delete-btn">
+					<svg class="del-btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+					  width="20px" height="20px" viewBox="0 0 20 20" version="1.1">
+					  <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+					  <title>Sound/General/Delete</title>
+					  <desc>Created with Sketch.</desc>
+					  <defs>
+						<path
+						  d="M4.54751641,6.99994966 L15.4523042,6.99994966 C15.7284466,6.99994966 15.9523042,7.22380729 15.9523042,7.49994966 C15.9523042,7.51506367 15.9516189,7.5301699 15.9502504,7.54522183 L15.1651793,16.1801783 C15.0715275,17.2102489 14.207924,17.9989808 13.1736049,17.9990897 L6.82662224,17.9997575 C5.79213514,17.9998663 4.92828345,17.2110677 4.83462539,16.180829 L4.04956981,7.54521753 C4.02456905,7.27020922 4.22724022,7.02700381 4.50224854,7.00200306 C4.51729904,7.00063483 4.53240384,6.99994966 4.54751641,6.99994966 Z M7.33333333,4 L7.88603796,2.34188612 C7.95409498,2.13771505 8.14516441,2 8.36037961,2 L11.6396204,2 C11.8548356,2 12.045905,2.13771505 12.113962,2.34188612 L12.6666667,4 L16.5,4 C16.7761424,4 17,4.22385763 17,4.5 L17,5.5 C17,5.77614237 16.7761424,6 16.5,6 L3.5,6 C3.22385763,6 3,5.77614237 3,5.5 L3,4.5 C3,4.22385763 3.22385763,4 3.5,4 L7.33333333,4 Z M8.38742589,4 L11.6125741,4 L11.2792408,3 L8.72075922,3 L8.38742589,4 Z M10,11.7204812 L11.5952436,10.1252376 C11.7905057,9.92997548 12.1070882,9.92997548 12.3023504,10.1252376 L12.3747624,10.1976496 C12.5700245,10.3929118 12.5700245,10.7094943 12.3747624,10.9047564 L10.7795188,12.5 L12.3747624,14.0952436 C12.5700245,14.2905057 12.5700245,14.6070882 12.3747624,14.8023504 L12.3023504,14.8747624 C12.1070882,15.0700245 11.7905057,15.0700245 11.5952436,14.8747624 L10,13.2795188 L8.40475641,14.8747624 C8.20949427,15.0700245 7.89291178,15.0700245 7.69764963,14.8747624 L7.62523762,14.8023504 C7.42997548,14.6070882 7.42997548,14.2905057 7.62523762,14.0952436 L9.22048121,12.5 L7.62523762,10.9047564 C7.42997548,10.7094943 7.42997548,10.3929118 7.62523762,10.1976496 L7.69764963,10.1252376 C7.89291178,9.92997548 8.20949427,9.92997548 8.40475641,10.1252376 L10,11.7204812 Z"
+						  id="path-1"></path>
+					  </defs>
+					  <g id="Sound/General/Delete" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+						<mask id="mask-2" fill="white">
+						  <use xlink:href="#path-1"></use>
+						</mask>
+						<g id="Trash-Can"></g>
+						<g id="White" mask="url(#mask-2)" fill="#FFFFFF">
+						  <rect id="Color" x="0" y="0" width="20" height="20"></rect>
+						</g>
+					  </g>
+					</svg>
+				  </button>
+				</div>
+			  </div>
+			  <button class="stage-selector-button fa-solid fa-ice-cream" onclick="addsprite()"
+				style="color: #ffffff;"></button>
+			</div>
+			<div class="stage-selector">
+			  <div class="stage-header">
+				<span>Stage</span>
+			  </div>
+			  <img class="stage-selector-costume"
+				src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIHZpZXdCb3g9Ii0xIC0xIDIgMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgPCEtLSBFeHBvcnRlZCBieSBTY3JhdGNoIC0gaHR0cDovL3NjcmF0Y2gubWl0LmVkdS8gLS0+Cjwvc3ZnPg==">
+			  <button class="stage-selector-button"><i class="bi bi-image" style="color:white"></i></button>
+			</div>
+		  </div>
+		</div>
+		<div class="code" id="code">
+		  <div class="toolbar">
+			<button id="movement" class="toolbar-action toolbar-Movement active" onclick="Movement()">
+			  <div
+				style="background-color: rgb(76, 151, 255);border-color: rgb(51, 115, 204);width: 1.25rem;height: 1.25rem;border-radius: 10px;    padding: 0.375rem 0px;display: inline-block;border: 1px solid rgb(51, 115, 204);">
+			  </div>
+			  </br>
+			  <span>Movement</span>
+			</button>
+			<button id="visual" class="toolbar-action toolbar-Visual" onclick="Visual()">
+			  <div
+				style="background-color: rgb(153, 102, 255);border-color: rgb(119, 77, 203);width: 1.25rem;height: 1.25rem;border: 1px solid rgb(119, 77, 203);border-radius: 10px;padding: 0.375rem 0px;display: inline-block;">
+			  </div>
+			  </br>
+			  <span>Visual</span>
+			</button>
+			<button id="control" class="toolbar-action toolbar-Control" onclick="Control()">
+			  <div
+				style="background-color: rgb(255, 171, 25);width: 1.25rem;height: 1.25rem;border-radius: 10px;    padding: 0.375rem 0px;display: inline-block;border: 1px solid rgb(207, 139, 23);">
+			  </div>
+			  </br>
+			  <span>Control</span>
+			</button>
+			<button id="inputs" class="toolbar-action toolbar-inputs" onclick="Input()">
+			  <div
+				style="background-color: rgb(89, 192, 89);width: 1.25rem;height: 1.25rem;border-radius: 10px;    padding: 0.375rem 0px;display: inline-block;border: 1px solid rgb(56, 148, 56);">
+			  </div>
+			  </br>
+			  <span>Inputs</span>
+			</button>
+		  </div>
+		  <div class="toolbar-blocks Control" id="toolbar-blocks">
+		  </div>
+		  <div id="blocklyDiv"></div>
+		</div>
+		<div class="costumes-outer" style="display:none;" id="costume">
+		  <div class="editor">
+			<div class="top-row">
+			  <span class="editor-text">Costume</span>
+			  <input class="editor-input" value="costume1">
+			  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			  <button onclick="codechanged()" style=" border: none; background-color: white; "><i style=" color: grey; "
+				  class="bi bi-play-circle-fill"></i></button>
+			</div>
+			<div class="editor-canvas" width="602" height="587" id="editor-canvas"></div>
+			<br>
+			<textarea class="editor-code" id="editor-code"
+			  spellcheck="false"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"></svg></textarea>
+		  </div>
+		</div>
+	  </div>
+	  <script>
+		// FOR FUTURE REFERENCE canvas.toDataUrl(...)
+		var active_sprite = "Sprite1";
+		function drawImageOnCanvas(img, x, y, width, height, rotation) {
+			var canvas = document.getElementById("BlCanvas");
+			var ctx = canvas.getContext('2d');
+
+			// Clear the canvas
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+			// Rotate the canvas around the center
+			ctx.translate(x + width / 2, y + height / 2);
+			ctx.rotate(rotation * (Math.PI / 180));
+			ctx.translate(-(x + width / 2), -(y + height / 2));
+
+			// Draw the image on the canvas
+			ctx.drawImage(img, x, y, width, height);
+
+			// Reset transformations
+			ctx.setTransform(1, 0, 0, 1, 0, 0);
+		}
+		function refreshcanvas() {
+		  var elements = document.querySelectorAll('.sprite');
+		  for (let i = 0; i < elements.length; i++) {
+			drawImageOnCanvas(elements[i].querySelector('#costume-preview'), elements[i].getAttribute("x"), elements[i].getAttribute("y"), elements[i].getAttribute("size"), elements[i].getAttribute("size"), elements[i].getAttribute("direction"))
+		  }
+		}
+		// Blocks START
+		function movea(steps) {
+		  var sprite = document.getElementById(active_sprite);
+		  var x = sprite.getAttribute("x");
+		  var x_new = parseInt(x) + steps;
+		  sprite.setAttribute("x", x_new);
+		  document.getElementById("sprite-x").value = x_new;
+		  makeactive(active_sprite);
+		}
+		function turnclockwise(degrees) {
+		  var sprite = document.getElementById(active_sprite);
+		  var direction = sprite.getAttribute("direction");
+		  var direction_new = parseInt(direction) + degrees;
+		  sprite.setAttribute("direction", direction_new);
+		  document.getElementById("sprite-direction").value = direction_new;
+		  makeactive(active_sprite);
+		}
+		function turnanticlockwise(degrees) {
+		  var sprite = document.getElementById(active_sprite);
+		  var direction = sprite.getAttribute("direction");
+		  var direction_new = parseInt(direction) - degrees;
+		  sprite.setAttribute("direction", direction_new);
+		  document.getElementById("sprite-direction").value = direction_new;
+		  makeactive(active_sprite);
+		}
+		function goto(xcoord, ycoord) {
+		  var sprite = document.getElementById(active_sprite);
+		  sprite.setAttribute("x", xcoord);
+		  sprite.setAttribute("y", ycoord);
+		  document.getElementById("sprite-x").value = xcoord;
+		  document.getElementById("sprite-y").value = ycoord;
+		  makeactive(active_sprite);
+		}
+		function pointindirection(direction) {
+		  var sprite = document.getElementById(active_sprite);
+		  document.getElementById("sprite-direction").value = direction;
+		  makeactive(active_sprite);
+		}
+		function changexby(xcoord) {
+		  var sprite = document.getElementById(active_sprite);
+		  var x = sprite.getAttribute("x");
+		  var x_new = parseInt(x) + xcoord;
+		  sprite.setAttribute("x", x_new);
+		  document.getElementById("sprite-x").value = x_new;
+		  makeactive(active_sprite);
+		}
+		function setxto(xcoord) {
+		  var sprite = document.getElementById(active_sprite);
+		  sprite.setAttribute("x", xcoord);
+		  document.getElementById("sprite-x").value = xcoord;
+		  makeactive(active_sprite);
+		}
+		function changeyby(ycoord) {
+		  var sprite = document.getElementById(active_sprite);
+		  var y = sprite.getAttribute("y");
+		  var y_new = parseInt(y) + ycoord;
+		  sprite.setAttribute("y", y_new);
+		  document.getElementById("sprite-y").value = y_new;
+		  makeactive(active_sprite);
+		}
+		function setyto(ycoord) {
+		  var sprite = document.getElementById(active_sprite);
+		  sprite.setAttribute("y", ycoord);
+		  document.getElementById("sprite-y").value = ycoord;
+		  makeactive(active_sprite);
+		}
+		function returnx() {
+		  var sprite = document.getElementById(active_sprite);
+		  return sprite.getAttribute("x");
+		  makeactive(active_sprite);
+		}
+		function returny() {
+		  var sprite = document.getElementById(active_sprite);
+		  return sprite.getAttribute("y");
+		  makeactive(active_sprite);
+		}
+		function returndirection() {
+		  var sprite = document.getElementById(active_sprite);
+		  return sprite.getAttribute("direction");
+		  makeactive(active_sprite);
+		}
+		function changeSizeBy(sizenum) {
+		  var sprite = document.getElementById(active_sprite);
+		  var size = sprite.getAttribute("size");
+		  var size_new = parseInt(size) + siznum;
+		  sprite.setAttribute("size", size_new);
+		  document.getElementById("sprite-size").value = size_new;
+		  makeactive(active_sprite);
+		}
+		function setSizeTo(sizenum) {
+		  var sprite = document.getElementById(active_sprite);
+		  sprite.setAttribute("size", sizenum);
+		  document.getElementById("sprite-size").value = sizenum;
+		  makeactive(active_sprite);
+		}
+		function returnSize() {
+		  var sprite = document.getElementById(active_sprite);
+		  return sprite.getAttribute("size");
+		}
+		function show() {
+		  document.getElementById(active_sprite).setAttribute('show', "true")
+		  makeactive(active_sprite);
+		}
+		function hide() {
+		  document.getElementById(active_sprite).setAttribute('show', "false")
+		  makeactive(active_sprite);
+		}
+		// Blockly block definition for "Move" function
+		Blockly.Blocks['move'] = {
+		  init: function () {
+			this.appendValueInput('STEPS')
+			  .setCheck('Number')
+			  .appendField('Move');
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(230);
+			this.setTooltip('Move the sprite by a specified number of steps');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/move');
+		  }
+		};
+
+		// Blockly JavaScript generator for "Move" block
+		Blockly.JavaScript['move'] = function (block) {
+		  var steps = Blockly.JavaScript.valueToCode(block, 'STEPS', Blockly.JavaScript.ORDER_ATOMIC);
+		  return 'movea(' + steps + ');\n';
+		};
+
+		// Blockly block definition for "Turn Clockwise" function
+		Blockly.Blocks['turn_clockwise'] = {
+		  init: function () {
+			this.appendValueInput('DEGREES')
+			  .setCheck('Number')
+			  .appendField('Turn Clockwise');
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(230);
+			this.setTooltip('Turn the sprite clockwise by a specified number of degrees');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/turn_clockwise');
+		  }
+		};
+
+		// Blockly JavaScript generator for "Turn Clockwise" block
+		Blockly.JavaScript['turn_clockwise'] = function (block) {
+		  var degrees = Blockly.JavaScript.valueToCode(block, 'DEGREES', Blockly.JavaScript.ORDER_ATOMIC);
+		  return 'turnclockwise(' + degrees + ');\n';
+		};
+
+		// Blockly block definition for "Turn Anti-Clockwise" function
+		Blockly.Blocks['turn_anticlockwise'] = {
+		  init: function () {
+			this.appendValueInput('DEGREES')
+			  .setCheck('Number')
+			  .appendField('Turn Anti-Clockwise');
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(230);
+			this.setTooltip('Turn the sprite anti-clockwise by a specified number of degrees');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/turn_anticlockwise');
+		  }
+		};
+
+		// Blockly JavaScript generator for "Turn Anti-Clockwise" block
+		Blockly.JavaScript['turn_anticlockwise'] = function (block) {
+		  var degrees = Blockly.JavaScript.valueToCode(block, 'DEGREES', Blockly.JavaScript.ORDER_ATOMIC);
+		  return 'turnanticlockwise(' + degrees + ');\n';
+		};
+
+		Blockly.Blocks['input'] = {
+		  init: function () {
+			this.appendDummyInput()
+			  .appendField('')
+			  .appendField(new Blockly.FieldTextInput('0', Blockly.FieldTextInput.numberValidator), 'input');
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(230);
+			this.setTooltip('input');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/input');
+		  }
+		};
+
+		// Blockly JavaScript generator for "Custom Block with Manual Input" block
+		Blockly.JavaScript['input'] = function (block) {
+		  var manualInput = block.getFieldValue('input');
+		  return '';
+		};
+
+		Blockly.Blocks['add'] = {
+		  init: function () {
+			this.appendValueInput('NUM1')
+			  .setCheck('Number')
+			  .appendField('Add');
+			this.appendValueInput('NUM2')
+			  .setCheck('Number')
+			  .appendField('+');
+			this.setOutput(true, 'Number');
+			this.setColour(230);
+			this.setTooltip('Add two numbers');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/add');
+		  }
+		};
+
+		Blockly.JavaScript['add'] = function (block) {
+		  var num1 = Blockly.JavaScript.valueToCode(block, 'NUM1', Blockly.JavaScript.ORDER_ATOMIC);
+		  var num2 = Blockly.JavaScript.valueToCode(block, 'NUM2', Blockly.JavaScript.ORDER_ATOMIC);
+		  return [num1 + ' + ' + num2, Blockly.JavaScript.ORDER_ADDITION];
+		};
+
+		Blockly.Blocks['subtract'] = {
+		  init: function () {
+			this.appendValueInput('NUM1')
+			  .setCheck('Number')
+			  .appendField('Subtract');
+			this.appendValueInput('NUM2')
+			  .setCheck('Number')
+			  .appendField('-');
+			this.setOutput(true, 'Number');
+			this.setColour(230);
+			this.setTooltip('Subtract the second number from the first');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/subtract');
+		  }
+		};
+
+		Blockly.JavaScript['subtract'] = function (block) {
+		  var num1 = Blockly.JavaScript.valueToCode(block, 'NUM1', Blockly.JavaScript.ORDER_ATOMIC);
+		  var num2 = Blockly.JavaScript.valueToCode(block, 'NUM2', Blockly.JavaScript.ORDER_ATOMIC);
+		  return [num1 + ' - ' + num2, Blockly.JavaScript.ORDER_SUBTRACTION];
+		};
+
+		Blockly.Blocks['multiply'] = {
+		  init: function () {
+			this.appendValueInput('NUM1')
+			  .setCheck('Number')
+			  .appendField('Multiply');
+			this.appendValueInput('NUM2')
+			  .setCheck('Number')
+			  .appendField('x');
+			this.setOutput(true, 'Number');
+			this.setColour(230);
+			this.setTooltip('Multiply two numbers');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/multiply');
+		  }
+		};
+
+		Blockly.JavaScript['multiply'] = function (block) {
+		  var num1 = Blockly.JavaScript.valueToCode(block, 'NUM1', Blockly.JavaScript.ORDER_ATOMIC);
+		  var num2 = Blockly.JavaScript.valueToCode(block, 'NUM2', Blockly.JavaScript.ORDER_ATOMIC);
+		  return [num1 + ' * ' + num2, Blockly.JavaScript.ORDER_MULTIPLICATION];
+		};
+
+		Blockly.Blocks['divide'] = {
+		  init: function () {
+			this.appendValueInput('NUM1')
+			  .setCheck('Number')
+			  .appendField('Divide');
+			this.appendValueInput('NUM2')
+			  .setCheck('Number')
+			  .appendField('/');
+			this.setOutput(true, 'Number');
+			this.setColour(230);
+			this.setTooltip('Divide the first number by the second');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/divide');
+		  }
+		};
+
+		Blockly.JavaScript['divide'] = function (block) {
+		  var num1 = Blockly.JavaScript.valueToCode(block, 'NUM1', Blockly.JavaScript.ORDER_ATOMIC);
+		  var num2 = Blockly.JavaScript.valueToCode(block, 'NUM2', Blockly.JavaScript.ORDER_ATOMIC);
+		  return [num1 + ' / ' + num2, Blockly.JavaScript.ORDER_DIVISION];
+		};
+
+		Blockly.Blocks['manual_edit'] = {
+		  init: function () {
+			this.appendDummyInput()
+			  .appendField(new Blockly.FieldTextInput('0'), 'MANUAL_INPUT');
+			this.setOutput(true, 'Number');
+			this.setColour(230);
+			this.setTooltip('Manually input a number');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/manual_edit');
+		  }
+		};
+
+		Blockly.JavaScript['manual_edit'] = function (block) {
+		  var manualInput = block.getFieldValue('MANUAL_INPUT');
+		  return [manualInput, Blockly.JavaScript.ORDER_ATOMIC];
+		};
+
+
+		// Blockly block definition for "Go To" function
+		Blockly.Blocks['go_to'] = {
+		  init: function () {
+			this.appendValueInput('XCOORD')
+			  .setCheck('Number')
+			  .appendField('Go To X:');
+			this.appendValueInput('YCOORD')
+			  .setCheck('Number')
+			  .appendField('Y:');
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(230);
+			this.setTooltip('Move the sprite to a specified position (x, y)');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/go_to');
+		  }
+		};
+
+		// Blockly JavaScript generator for "Go To" block
+		Blockly.JavaScript['go_to'] = function (block) {
+		  var xcoord = Blockly.JavaScript.valueToCode(block, 'XCOORD', Blockly.JavaScript.ORDER_ATOMIC);
+		  var ycoord = Blockly.JavaScript.valueToCode(block, 'YCOORD', Blockly.JavaScript.ORDER_ATOMIC);
+		  return 'goto(' + xcoord + ', ' + ycoord + ');\n';
+		};
+
+		// Blockly block definition for "Point in Direction" function
+		Blockly.Blocks['point_in_direction'] = {
+		  init: function () {
+			this.appendValueInput('DIRECTION')
+			  .setCheck('Number')
+			  .appendField('Point in Direction');
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(230);
+			this.setTooltip('Set the sprite direction to a specified angle');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/point_in_direction');
+		  }
+		};
+
+		// Blockly JavaScript generator for "Point in Direction" block
+		Blockly.JavaScript['point_in_direction'] = function (block) {
+		  var direction = Blockly.JavaScript.valueToCode(block, 'DIRECTION', Blockly.JavaScript.ORDER_ATOMIC);
+		  return 'pointindirection(' + direction + ');\n';
+		};
+
+		// Blockly block definition for "Change X By" function
+		Blockly.Blocks['change_x_by'] = {
+		  init: function () {
+			this.appendValueInput('XCOORD')
+			  .setCheck('Number')
+			  .appendField('Change X By');
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(230);
+			this.setTooltip('Change the sprite\'s X coordinate by a specified amount');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/change_x_by');
+		  }
+		};
+
+		// Blockly JavaScript generator for "Change X By" block
+		Blockly.JavaScript['change_x_by'] = function (block) {
+		  var xcoord = Blockly.JavaScript.valueToCode(block, 'XCOORD', Blockly.JavaScript.ORDER_ATOMIC);
+		  return 'changexby(' + xcoord + ');\n';
+		};
+
+		// Blockly block definition for "Set X To" function
+		Blockly.Blocks['set_x_to'] = {
+		  init: function () {
+			this.appendValueInput('XCOORD')
+			  .setCheck('Number')
+			  .appendField('Set X To');
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(230);
+			this.setTooltip('Set the sprite\'s X coordinate to a specified value');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/set_x_to');
+		  }
+		};
+
+		// Blockly JavaScript generator for "Set X To" block
+		Blockly.JavaScript['set_x_to'] = function (block) {
+		  var xcoord = Blockly.JavaScript.valueToCode(block, 'XCOORD', Blockly.JavaScript.ORDER_ATOMIC);
+		  return 'setxto(' + xcoord + ');\n';
+		};
+
+		// Blockly block definition for "Change Y By" function
+		Blockly.Blocks['change_y_by'] = {
+		  init: function () {
+			this.appendValueInput('YCOORD')
+			  .setCheck('Number')
+			  .appendField('Change Y By');
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(230);
+			this.setTooltip('Change the sprite\'s Y coordinate by a specified amount');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/change_y_by');
+		  }
+		};
+
+		// Blockly JavaScript generator for "Change Y By" block
+		Blockly.JavaScript['change_y_by'] = function (block) {
+		  var ycoord = Blockly.JavaScript.valueToCode(block, 'YCOORD', Blockly.JavaScript.ORDER_ATOMIC);
+		  return 'changeyby(' + ycoord + ');\n';
+		};
+
+		// Blockly block definition for "Set Y To" function
+		Blockly.Blocks['set_y_to'] = {
+		  init: function () {
+			this.appendValueInput('YCOORD')
+			  .setCheck('Number')
+			  .appendField('Set Y To');
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(230);
+			this.setTooltip('Set the sprite\'s Y coordinate to a specified value');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/set_y_to');
+		  }
+		};
+
+		// Blockly JavaScript generator for "Set Y To" block
+		Blockly.JavaScript['set_y_to'] = function (block) {
+		  var ycoord = Blockly.JavaScript.valueToCode(block, 'YCOORD', Blockly.JavaScript.ORDER_ATOMIC);
+		  return 'setyto(' + ycoord + ');\n';
+		};
+
+		// Blockly block definition for "Return X" function
+		Blockly.Blocks['return_x'] = {
+		  init: function () {
+			this.setOutput(true, 'Number');
+			this.appendDummyInput()
+			  .appendField('Return X');
+			this.setColour(230);
+			this.setTooltip('Get the current X coordinate of the sprite');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/return_x');
+		  }
+		};
+
+		// Blockly JavaScript generator for "Return X" block
+		Blockly.JavaScript['return_x'] = function (block) {
+		  return ['returnx()', Blockly.JavaScript.ORDER_FUNCTION_CALL];
+		};
+
+		// Blockly block definition for "Return Y" function
+		Blockly.Blocks['return_y'] = {
+		  init: function () {
+			this.setOutput(true, 'Number');
+			this.appendDummyInput()
+			  .appendField('Return Y');
+			this.setColour(230);
+			this.setTooltip('Get the current Y coordinate of the sprite');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/return_y');
+		  }
+		};
+
+		// Blockly JavaScript generator for "Return Y" block
+		Blockly.JavaScript['return_y'] = function (block) {
+		  return ['returny()', Blockly.JavaScript.ORDER_FUNCTION_CALL];
+		};
+
+		// Blockly block definition for "Return Direction" function
+		Blockly.Blocks['return_direction'] = {
+		  init: function () {
+			this.setOutput(true, 'Number');
+			this.appendDummyInput()
+			  .appendField('Return Direction');
+			this.setColour(230);
+			this.setTooltip('Get the current direction of the sprite');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/return_direction');
+		  }
+		};
+
+		// Blockly JavaScript generator for "Return Direction" block
+		Blockly.JavaScript['return_direction'] = function (block) {
+		  return ['returndirection()', Blockly.JavaScript.ORDER_FUNCTION_CALL];
+		};
+
+		Blockly.Blocks['repeat_times'] = {
+		  init: function () {
+			this.appendValueInput('TIMES')
+			  .setCheck('Number')
+			  .appendField('Repeat');
+			this.appendStatementInput('DO')
+			  .appendField('times');
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(230);
+			this.setTooltip('Repeat a set of actions a specified number of times');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/');
+		  }
+		};
+
+		Blockly.Blocks['for_loop'] = {
+		  init: function () {
+			this.appendValueInput('TIMES')
+			  .setCheck('Number')
+			  .appendField('For');
+			this.appendDummyInput()
+			  .appendField('times');
+			this.appendStatementInput('DO')
+			  .appendField('do');
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(230);
+			this.setTooltip('Repeat a set of actions for a specified number of times');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/');
+		  }
+		};
+
+		Blockly.Blocks['if_statement'] = {
+		  init: function () {
+			this.appendValueInput('CONDITION')
+			  .setCheck('Boolean')
+			  .appendField('If');
+			this.appendStatementInput('DO')
+			  .appendField('then');
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(230);
+			this.setTooltip('Conditional statement: if the condition is true, execute the specified actions');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/');
+		  }
+		};
+
+		Blockly.Blocks['if_else_statement'] = {
+		  init: function () {
+			this.appendValueInput('CONDITION')
+			  .setCheck('Boolean')
+			  .appendField('If');
+			this.appendStatementInput('DO')
+			  .appendField('then');
+			this.appendStatementInput('ELSE')
+			  .appendField('else');
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(230);
+			this.setTooltip('Conditional statement: if the condition is true, execute the first set of actions; otherwise, execute the second set of actions');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/');
+		  }
+		};
+
+		Blockly.JavaScript['repeat_times'] = function (block) {
+		  var times = Blockly.JavaScript.valueToCode(block, 'TIMES', Blockly.JavaScript.ORDER_ATOMIC);
+		  var code = '';
+		  code += 'for (var i = 0; i < ' + times + '; i++) {\n';
+		  code += Blockly.JavaScript.statementToCode(block, 'DO');
+		  code += '}\n';
+		  return code;
+		};
+		
+		// Blockly block definition for "Switch Sprite" function with variable
+		Blockly.Blocks['switch_sprite'] = {
+		  init: function () {
+			this.appendValueInput('SPRITE_NAME')
+			  .setCheck('String')
+			  .appendField('Switch to Sprite');
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(230);
+			this.setTooltip('Switch to another sprite');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/switch_sprite');
+		  }
+		};
+
+		// Blockly JavaScript generator for "Switch Sprite" block with variable
+		Blockly.JavaScript['switch_sprite'] = function (block) {
+		  var spriteName = Blockly.JavaScript.valueToCode(block, 'SPRITE_NAME', Blockly.JavaScript.ORDER_ATOMIC);
+		  return 'active_sprite = \'' + spriteName + '\';\n';
+		};
+
+
+		Blockly.JavaScript['for_loop'] = function (block) {
+		  var times = Blockly.JavaScript.valueToCode(block, 'TIMES', Blockly.JavaScript.ORDER_ATOMIC);
+		  var code = '';
+		  code += 'for (var i = 0; i < ' + times + '; i++) {\n';
+		  code += Blockly.JavaScript.statementToCode(block, 'DO');
+		  code += '}\n';
+		  return code;
+		};
+
+		Blockly.JavaScript['if_statement'] = function (block) {
+		  var condition = Blockly.JavaScript.valueToCode(block, 'CONDITION', Blockly.JavaScript.ORDER_ATOMIC);
+		  var code = '';
+		  code += 'if (' + condition + ') {\n';
+		  code += Blockly.JavaScript.statementToCode(block, 'DO');
+		  code += '}\n';
+		  return code;
+		};
+
+		Blockly.JavaScript['if_else_statement'] = function (block) {
+		  var condition = Blockly.JavaScript.valueToCode(block, 'CONDITION', Blockly.JavaScript.ORDER_ATOMIC);
+		  var code = '';
+		  code += 'if (' + condition + ') {\n';
+		  code += Blockly.JavaScript.statementToCode(block, 'DO');
+		  code += '} else {\n';
+		  code += Blockly.JavaScript.statementToCode(block, 'ELSE');
+		  code += '}\n';
+		  return code;
+		};
+		Blockly.Blocks['change_size_by'] = {
+		  init: function () {
+			this.appendValueInput('SIZE')
+			  .setCheck('Number')
+			  .appendField('Change Size By');
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(230);
+			this.setTooltip('Change the sprite size by a specified amount');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/change_size_by');
+		  }
+		};
+
+		Blockly.JavaScript['change_size_by'] = function (block) {
+		  var size = Blockly.JavaScript.valueToCode(block, 'SIZE', Blockly.JavaScript.ORDER_ATOMIC);
+		  return 'changeSizeBy(' + size + ');\n';
+		};
+
+		Blockly.Blocks['set_size_to'] = {
+		  init: function () {
+			this.appendValueInput('SIZE')
+			  .setCheck('Number')
+			  .appendField('Set Size To');
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(230);
+			this.setTooltip('Set the sprite size to a specified value');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/set_size_to');
+		  }
+		};
+
+		Blockly.JavaScript['set_size_to'] = function (block) {
+		  var size = Blockly.JavaScript.valueToCode(block, 'SIZE', Blockly.JavaScript.ORDER_ATOMIC);
+		  return 'setSizeTo(' + size + ');\n';
+		};
+
+		Blockly.Blocks['show'] = {
+		  init: function () {
+			this.appendDummyInput()
+			  .appendField('Show');
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(230);
+			this.setTooltip('Show the sprite');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/show');
+		  }
+		};
+
+		Blockly.JavaScript['show'] = function (block) {
+		  return 'show();\n';
+		};
+
+		Blockly.Blocks['hide'] = {
+		  init: function () {
+			this.appendDummyInput()
+			  .appendField('Hide');
+			this.setPreviousStatement(true, null);
+			this.setNextStatement(true, null);
+			this.setColour(230);
+			this.setTooltip('Hide the sprite');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/hide');
+		  }
+		};
+
+		Blockly.JavaScript['hide'] = function (block) {
+		  return 'hide();\n';
+		};
+
+		Blockly.Blocks['return_size'] = {
+		  init: function () {
+			this.setOutput(true, 'Number');
+			this.appendDummyInput()
+			  .appendField('Return Size');
+			this.setColour(230);
+			this.setTooltip('Get the current size of the sprite');
+			this.setHelpUrl('https://github.com/Cherrytree56567/ScriptBlocks/wiki/return_size');
+		  }
+		};
+
+		Blockly.JavaScript['return_size'] = function (block) {
+		  return ['returnSize()', Blockly.JavaScript.ORDER_FUNCTION_CALL];
+		};
+
+		// Blocks END
+		function onclcos() {
+		  document.getElementById("tab-code").setAttribute("class", "tab tab-code");
+		  document.getElementById("tab-costume").setAttribute("class", "tab tab-constumes active-tab");
+		  document.getElementById("code").setAttribute("style", "display:none;");
+		  document.getElementById("costume").setAttribute("style", "");
+		}
+		function onclcod() {
+		  document.getElementById("tab-code").setAttribute("class", "tab tab-code active-tab");
+		  document.getElementById("tab-costume").setAttribute("class", "tab tab-constumes");
+		  document.getElementById("code").setAttribute("style", "");
+		  document.getElementById("costume").setAttribute("style", "display:none;");
+		}
+		function codechanged() {
+		  document.getElementById(active_sprite).setAttribute("svg", document.getElementById("editor-code").value);
+		  var ctx = document.getElementById("editor-canvas");
+		  ctx.innerHTML = document.getElementById("editor-code").value;
+		  document.getElementById(active_sprite).querySelector("#costume-preview").src = "data:image/svg+xml;base64," + btoa(document.getElementById("editor-code").value);
+		}
+		function deletes(sprnam) {
+		  document.getElementById(sprnam).remove();
+		}
+		function onshow() {
+		  document.getElementById("show-icon-active").setAttribute("class", "active-show");
+		  document.getElementById("hide-icon-active").setAttribute("class", "inactive-show");
+		  onchangea();
+		}
+		function onhide() {
+		  document.getElementById("hide-icon-active").setAttribute("class", "active-show");
+		  document.getElementById("show-icon-active").setAttribute("class", "inactive-show");
+		  onchangea();
+		}
+		function onchangen() {
+		  var name = document.getElementById("sprite-name").value;
+		  document.getElementById(active_sprite).setAttribute("onclick", "makeactive('" +
+			name + "')");
+		  document.getElementById(active_sprite).setAttribute("name", name);
+		  document.getElementById(active_sprite).setAttribute("id", name);
+		  active_sprite = name;
+		  document.getElementById(active_sprite).getElementsByClassName("delete-btn")[0].setAttribute("onclick", "deletes('" + name + "')");
+		  document.getElementById(active_sprite).getElementsByClassName("sprite-footer-text")[0].innerHTML = active_sprite;
+		  onchangea();
+		}
+		function makeactive(sprnam) {
+		  active_sprite = sprnam;
+		  var name = document.getElementById(active_sprite).getAttribute('name');
+		  var x = document.getElementById(active_sprite).getAttribute('x');
+		  var y = document.getElementById(active_sprite).getAttribute('y');
+		  var show = document.getElementById(active_sprite).getAttribute('show');
+		  var size = document.getElementById(active_sprite).getAttribute('size');
+		  var direction = document.getElementById(active_sprite).getAttribute('direction');
+		  document.getElementById("sprite-name").value = name;
+		  document.getElementById("sprite-x").value = x;
+		  document.getElementById("sprite-y").value = y;
+		  document.getElementById("sprite-size").value = size;
+		  document.getElementById("sprite-direction").value = direction;
+		  if (document.getElementById(active_sprite).getAttribute('show') === "true") {
+			document.getElementById("show-icon-active").setAttribute("class", "active-show");
+			document.getElementById("hide-icon-active").setAttribute("class", "inactive-show");
+		  }
+		  if (document.getElementById(active_sprite).getAttribute('show') === "false") {
+			document.getElementById("hide-icon-active").setAttribute("class", "active-show");
+			document.getElementById("show-icon-active").setAttribute("class", "inactive-show");
+		  }
+		  document.getElementById("editor-code").value = document.getElementById(active_sprite).getAttribute("svg");
+		  document.getElementById("editor-code").innerHTML = document.getElementById(active_sprite).getAttribute("svg");
+		  refreshcanvas();
+		}
+		function onchangea() {
+		  document.getElementById(active_sprite).setAttribute('name', document.getElementById("sprite-name").value);
+		  document.getElementById(active_sprite).setAttribute('x', document.getElementById("sprite-x").value);
+		  document.getElementById(active_sprite).setAttribute('y', document.getElementById("sprite-y").value);
+		  document.getElementById(active_sprite).setAttribute('size', document.getElementById("sprite-size").value);
+		  document.getElementById(active_sprite).setAttribute('direction', document.getElementById("sprite-direction").value);
+		  if (document.getElementById("show-icon-active").getAttribute("class") === "active-show") {
+			document.getElementById(active_sprite).setAttribute('show', "true");
+		  }
+		  if (document.getElementById("hide-icon-active").getAttribute("class") === "active-show") {
+			document.getElementById(active_sprite).setAttribute('show', "false");
+		  }
+		  document.getElementById("editor-code").value = document.getElementById(active_sprite).getAttribute("svg");
+		  document.getElementById("editor-code").innerHTML = document.getElementById(active_sprite).getAttribute("svg");
+		  refreshcanvas();
+		}
+		function addsprite() {
+		  var id = "";
+		  for (var i = 2; ; i++) {
+			id = "Sprite" + i;
+			var element = document.getElementById(id);
+
+			if (element === null) {
+			  break; // Exit the loop if the element doesn't exist
+			}
+		  }
+		  console.log("Created Sprite with ID: " + id);
+		  var a = '<div onclick="makeactive(\'' + id + '\')" svg="<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; version=&quot;1.1&quot;></svg>" class="sprite" id="' + id + '" name="' + id + '" x="0" y="0" show="true" size="100" direction="90"><div class="sprite-preview"><img style="width: 35px;margin: 5px;margin-bottom: 15px;" class="sprite-selector-item_sprite-image_2QWuK" id="costume-preview" draggable="false" src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSI4Ny45OTk0NSIgaGVpZ2h0PSI4OC4wMDE0MiIgdmlld0JveD0iMCwwLDg3Ljk5OTQ1LDg4LjAwMTQyIj4KICA8IS0tIFRoaXMgaWNvbiBpcyBiYXNlZCBvbiBUd2Vtb2ppIGh0dHBzOi8vdHdlbW9qaS50d2l0dGVyLmNvbS8gLS0+CiAgPCEtLSBMaWNlbnNlOiBDQy1CWSA0LjAgaHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LzQuMC8gLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE5Ni4wMDAyOCwtMTM1Ljk5OTI5KSI+CiAgICA8ZyBkYXRhLXBhcGVyLWRhdGE9InsmcXVvdDtpc1BhaW50aW5nTGF5ZXImcXVvdDs6dHJ1ZX0iIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj4KICAgICAgPHBhdGggZD0iTTI4MC43NjE2NCwyMjQuMDAwNzFjLTAuODI4NDksMCAtMS42NTY5OCwtMC4zMTY2MSAtMi4yOTAyMSwtMC45NDcyMWwtODAuODQ1ODQsLTgwLjg0ODQ4Yy0xLjI2Mzg0LC0xLjI2Mzg0IC0xLjI2Mzg0LC0zLjMxNjU3IDAsLTQuNTgwNDFjMS4yNjM4NCwtMS4yNjM4NCAzLjMxNjU3LC0xLjI2Mzg0IDQuNTgwNDEsMGw4MC44NDU4NCw4MC44NDU4NGMxLjI2Mzg0LDEuMjYzODQgMS4yNjM4NCwzLjMxNjU3IDAsNC41ODA0MWMtMC42MzMyNCwwLjYzMDYgLTEuNDYxNzMsMC45NDk4NSAtMi4yOTAyMSwwLjk0OTg1eiIgZmlsbD0iI2Q5OWU4MiIvPgogICAgICA8cGF0aCBkPSJNMjMxLjYzMDQsMTUzLjgxNDM1YzAsOS44Mzg5MiAtNy45NzYxNCwxNy44MTUwNiAtMTcuODE1MDYsMTcuODE1MDZjLTkuODM4OTIsMCAtMTcuODE1MDYsLTcuOTc2MTQgLTE3LjgxNTA2LC0xNy44MTUwNmMwLC05LjgzODkyIDcuOTc2MTQsLTE3LjgxNTA2IDE3LjgxNTA2LC0xNy44MTUwNmM5LjgzODkyLDAgMTcuODE1MDYsNy45NzYxNCAxNy44MTUwNiwxNy44MTUwNnoiIGZpbGw9IiNmY2IxZTMiLz4KICAgICAgPHBhdGggZD0iTTIyOS4xNjA5OCwxOTAuNTkyODhjLTkuNTc1NjUsLTIuMjYxMTEgLTE1LjUwNTI0LC0xMS44NTY3MSAtMTMuMjQ0MTIsLTIxLjQzMjM1YzIuMjYxMTEsLTkuNTc1NjUgMTEuODU2NzEsLTE1LjUwNTI0IDIxLjQzMjM1LC0xMy4yNDQxMmM5LjU3NTY1LDIuMjYxMTEgMTUuNTA1MjQsMTEuODU2NzEgMTMuMjQ0MTIsMjEuNDMyMzVjLTIuMjYxMTEsOS41NzU2NSAtMTEuODU2NzEsMTUuNTA1MjQgLTIxLjQzMjM1LDEzLjI0NDEyeiIgZmlsbD0iI2ZmZDk4MyIvPgogICAgICA8cGF0aCBkPSJNMjcwLjUwMzIxLDE5Mi42ODQ1M2MwLDkuODM4OTIgLTcuOTc4NzgsMTcuODE3NjkgLTE3LjgxNzY5LDE3LjgxNzY5Yy05LjgzODkyLDAgLTE3LjgxNTA2LC03Ljk3ODc4IC0xNy44MTUwNiwtMTcuODE3NjljMCwtOS44Mzg5MiA3Ljk3NjE0LC0xNy44MTUwNiAxNy44MTUwNiwtMTcuODE1MDZjOS44Mzg5MiwwIDE3LjgxNzY5LDcuOTc4NzggMTcuODE3NjksMTcuODE1MDZ6IiBmaWxsPSIjYTZkMzg4Ii8+CiAgICAgIDxwYXRoIGQ9Ik0yODAuNzYxNjQsMjI0LjAwMDcxYy0wLjgyODQ5LDAgLTEuNjU2OTgsLTAuMzE2NjEgLTIuMjkwMjEsLTAuOTQ3MjFsLTE5Ljg0MTQxLC0xOS44NDE0MWMtMS4yNjY0OCwtMS4yNjM4NCAtMS4yNjY0OCwtMy4zMTY1NyAwLC00LjU4MDQxYzEuMjY2NDgsLTEuMjYzODQgMy4zMTM5MywtMS4yNjM4NCA0LjU4MDQxLDBsMTkuODQxNDEsMTkuODQxNDFjMS4yNjM4NCwxLjI2Mzg0IDEuMjYzODQsMy4zMTY1NyAwLDQuNTgwNDFjLTAuNjMzMjQsMC42Mjc5NiAtMS40NjE3MywwLjk0NzIxIC0yLjI5MDIxLDAuOTQ3MjF6IiBmaWxsPSIjZDk5ZTgyIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4="></div><div class="sprite-footer"><span class="sprite-footer-text">' + id + '</span></div><button class="delete-btn" onclick="deletes(\'' + id + '\')"><svg class="del-btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 20 20" version="1.1"><!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com --><title>Sound/General/Delete</title><desc>Created with Sketch.</desc><defs><path d="M4.54751641,6.99994966 L15.4523042,6.99994966 C15.7284466,6.99994966 15.9523042,7.22380729 15.9523042,7.49994966 C15.9523042,7.51506367 15.9516189,7.5301699 15.9502504,7.54522183 L15.1651793,16.1801783 C15.0715275,17.2102489 14.207924,17.9989808 13.1736049,17.9990897 L6.82662224,17.9997575 C5.79213514,17.9998663 4.92828345,17.2110677 4.83462539,16.180829 L4.04956981,7.54521753 C4.02456905,7.27020922 4.22724022,7.02700381 4.50224854,7.00200306 C4.51729904,7.00063483 4.53240384,6.99994966 4.54751641,6.99994966 Z M7.33333333,4 L7.88603796,2.34188612 C7.95409498,2.13771505 8.14516441,2 8.36037961,2 L11.6396204,2 C11.8548356,2 12.045905,2.13771505 12.113962,2.34188612 L12.6666667,4 L16.5,4 C16.7761424,4 17,4.22385763 17,4.5 L17,5.5 C17,5.77614237 16.7761424,6 16.5,6 L3.5,6 C3.22385763,6 3,5.77614237 3,5.5 L3,4.5 C3,4.22385763 3.22385763,4 3.5,4 L7.33333333,4 Z M8.38742589,4 L11.6125741,4 L11.2792408,3 L8.72075922,3 L8.38742589,4 Z M10,11.7204812 L11.5952436,10.1252376 C11.7905057,9.92997548 12.1070882,9.92997548 12.3023504,10.1252376 L12.3747624,10.1976496 C12.5700245,10.3929118 12.5700245,10.7094943 12.3747624,10.9047564 L10.7795188,12.5 L12.3747624,14.0952436 C12.5700245,14.2905057 12.5700245,14.6070882 12.3747624,14.8023504 L12.3023504,14.8747624 C12.1070882,15.0700245 11.7905057,15.0700245 11.5952436,14.8747624 L10,13.2795188 L8.40475641,14.8747624 C8.20949427,15.0700245 7.89291178,15.0700245 7.69764963,14.8747624 L7.62523762,14.8023504 C7.42997548,14.6070882 7.42997548,14.2905057 7.62523762,14.0952436 L9.22048121,12.5 L7.62523762,10.9047564 C7.42997548,10.7094943 7.42997548,10.3929118 7.62523762,10.1976496 L7.69764963,10.1252376 C7.89291178,9.92997548 8.20949427,9.92997548 8.40475641,10.1252376 L10,11.7204812 Z" id="path-1" /></defs><g id="Sound/General/Delete" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><mask id="mask-2" fill="white"><use xlink:href="#path-1" /></mask><g id="Trash-Can" /><g id="White" mask="url(#mask-2)" fill="#FFFFFF"><rect id="Color" x="0" y="0" width="20" height="20" /></g></g></svg></button></div>';
+		  document.getElementById("sprite-container").innerHTML += a;
+		  makeactive(id);
+		}
+		var workspace;
+
+		function initBlockly() {
+		  workspace = Blockly.inject('blocklyDiv', {
+			toolbox: document.getElementById('toolbox')
+		  });
+		}
+
+		function Control() {
+		  document.getElementById('toolbar-blocks').innerHTML = "";
+		  ControladdBlockPreview('repeat_times');
+		  ControladdBlockPreview('for_loop');
+		  ControladdBlockPreview('if_statement');
+		  ControladdBlockPreview('if_else_statement');
+		  document.getElementById("control").classList.add("active");
+		  document.getElementById("movement").classList.remove("active");
+		  document.getElementById("visual").classList.remove("active");
+		  document.getElementById("inputs").classList.remove("active");
+		}
+		function Visual() {
+		  document.getElementById('toolbar-blocks').innerHTML = "";
+		  VisualaddBlockPreview('change_size_by');
+		  VisualaddBlockPreview('set_size_to');
+		  VisualaddBlockPreview('show');
+		  VisualaddBlockPreview('hide');
+		  document.getElementById("control").classList.remove("active");
+		  document.getElementById("movement").classList.remove("active");
+		  document.getElementById("visual").classList.add("active");
+		  document.getElementById("inputs").classList.remove("active");
+		}
+		function Input() {
+		  document.getElementById('toolbar-blocks').innerHTML = "";
+		  InputaddBlockPreview('add');
+		  InputaddBlockPreview('subtract');
+		  InputaddBlockPreview('multiply');
+		  InputaddBlockPreview('divide');
+		  InputaddBlockPreview('manual_edit');
+		  document.getElementById("control").classList.remove("active");
+		  document.getElementById("movement").classList.remove("active");
+		  document.getElementById("visual").classList.remove("active");
+		  document.getElementById("inputs").classList.add("active");
+		}
+
+		function Movement() {
+		  document.getElementById('toolbar-blocks').innerHTML = "";
+		  MovementaddBlockPreview('move');
+		  MovementaddBlockPreview('turn_clockwise');
+		  MovementaddBlockPreview('turn_anticlockwise');
+		  MovementaddBlockPreview('go_to');
+		  MovementaddBlockPreview('point_in_direction');
+		  MovementaddBlockPreview('change_x_by');
+		  MovementaddBlockPreview('set_x_to');
+		  MovementaddBlockPreview('change_y_by');
+		  MovementaddBlockPreview('set_y_to');
+		  MovementaddBlockPreview('return_x');
+		  MovementaddBlockPreview('return_y');
+		  MovementaddBlockPreview('return_direction');
+		  MovementaddBlockPreview('switch_sprite');
+		  document.getElementById("control").classList.remove("active");
+		  document.getElementById("movement").classList.add("active");
+		  document.getElementById("visual").classList.remove("active");
+		  document.getElementById("inputs").classList.remove("active");
+		}
+
+		function addBlockPreview(blockType) {
+		  // Create a preview of the block in the toolbar
+		  var previewDiv = document.createElement('div');
+		  previewDiv.className = 'block-preview';
+		  previewDiv.innerHTML = blockType;
+		  previewDiv.setAttribute("onclick", "moveBlockToWorkspace(\"" + blockType + "\");");
+
+		  // Add the preview to the toolbar
+		  document.getElementById('toolbar-blocks').appendChild(previewDiv);
+		}
+
+		function ControladdBlockPreview(blockType) {
+		  // Create a preview of the block in the toolbar
+		  var previewDiv = document.createElement('div');
+		  previewDiv.className = 'control-block-preview';
+		  previewDiv.innerHTML = blockType;
+		  previewDiv.setAttribute("onclick", "moveBlockToWorkspace(\"" + blockType + "\");");
+
+		  // Add the preview to the toolbar
+		  document.getElementById('toolbar-blocks').innerHTML += previewDiv.outerHTML + "<br><br>";
+		}
+		function VisualaddBlockPreview(blockType) {
+		  // Create a preview of the block in the toolbar
+		  var previewDiv = document.createElement('div');
+		  previewDiv.className = 'visual-block-preview';
+		  previewDiv.innerHTML = blockType;
+		  previewDiv.setAttribute("onclick", "moveBlockToWorkspace(\"" + blockType + "\");");
+
+		  // Add the preview to the toolbar
+		  document.getElementById('toolbar-blocks').innerHTML += previewDiv.outerHTML + "<br><br>";
+		}
+		function InputaddBlockPreview(blockType) {
+		  // Create a preview of the block in the toolbar
+		  var previewDiv = document.createElement('div');
+		  previewDiv.className = 'input-block-preview';
+		  previewDiv.innerHTML = blockType;
+		  previewDiv.setAttribute("onclick", "moveBlockToWorkspace(\"" + blockType + "\");");
+
+		  // Add the preview to the toolbar
+		  document.getElementById('toolbar-blocks').innerHTML += previewDiv.outerHTML + "<br><br>";
+		}
+
+		function MovementaddBlockPreview(blockType) {
+		  // Create a preview of the block in the toolbar
+		  var previewDiv = document.createElement('div');
+		  previewDiv.className = 'movement-block-preview';
+		  previewDiv.innerHTML = blockType;
+		  previewDiv.setAttribute("onclick", "moveBlockToWorkspace(\"" + blockType + "\");");
+
+		  // Add the preview to the toolbar
+		  document.getElementById('toolbar-blocks').innerHTML += previewDiv.outerHTML + "<br><br>";
+		}
+
+		function moveBlockToWorkspace(blockType) {
+		  // Create a new block in the workspace
+		  var block = workspace.newBlock(blockType);
+
+		  // Position the block in the workspace (optional)
+		  block.moveBy(450, 50);
+
+		  // Update the block's workspace (required)
+		  block.workspace = workspace;
+
+		  // Render the block
+		  block.initSvg();
+		  block.render();
+		}
+
+		function runCode() {
+		  var code = Blockly.JavaScript.workspaceToCode(workspace);
+
+		  // You can execute the generated code here or send it to a server for execution
+		  // For simplicity, we'll just log it to the console in this example
+		  console.log('Generated Code:', code);
+		  eval(code);
+		}
+
+		// Initialize Blockly when the page loads
+		document.addEventListener('DOMContentLoaded', initBlockly);
+	  </script>
+	</body>
+</html>
